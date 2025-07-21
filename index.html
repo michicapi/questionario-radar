@@ -1,200 +1,142 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Questionario Radar Chart</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-  body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 0 10px; }
-  h1 { text-align: center; }
-  .question { margin: 15px 0; }
-  label { display: block; margin-bottom: 5px; font-weight: bold; }
-  select { width: 100%; padding: 6px; font-size: 1rem; }
-  #chartContainer { margin-top: 30px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionario Radar</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9f2;
+      color: #333;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 2rem;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border: none;
+      background-color: #ff8c42;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff6a00;
+    }
+  </style>
 </head>
 <body>
-
-<h1>Quanto sei Moralista, Borghese, Cinico o Distratto?</h1>
-
-<form id="quizForm">
-  <div class="question">
-    <label>1. È giusto giudicare chi si comporta in modo scorretto, anche se non mi riguarda direttamente.</label>
-    <select data-index="0" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+  <h1>📊 Radar della Tua Anima</h1>
+  <form id="questionario">
+    <h2>Moralismo</h2>
+    <label>😴 Sei agli esercizi della Fraternità e quello accanto si addormenta. Quando si sveglia per la messa dice il Padre Nostro fuori tempo. Quanto lo giudichi?</label>
+    <select name="moralismo1">
+      <option value="1">1 - Nessun giudizio, fratello mio</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Eretico pubblico!</option>
     </select>
-  </div>
 
-  <div class="question">
-    <label>2. Le regole esistono per essere rispettate, sempre.</label>
-    <select data-index="1" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+    <label>📘 Arrivi alla scuola senza aver letto la SDC. Quanto potrai effettivamente lavorare quella sera?</label>
+    <select name="moralismo2">
+      <option value="1">1 - Con la Grazia tutto è possibile</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Niente, Netflix subito</option>
     </select>
-  </div>
 
-  <div class="question">
-    <label>3. Mi sento a mio agio in contesti formali, ordinati e prevedibili.</label>
-    <select data-index="2" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+    <h2>Borghesismo</h2>
+    <label>🥵 Hai appena finito una "gita passeggiabile" smattando. Cosa farai adesso?</label>
+    <select name="borghesismo1">
+      <option value="1">1 - Formaggino del cestino e via</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Pelata al rifugio con orgoglio</option>
     </select>
-  </div>
 
-  <div class="question">
-    <label>4. Preferisco stabilità e routine al rischio e all’imprevisto.</label>
-    <select data-index="3" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+    <label>🪑 Hai visto uno della CL con il seggiolino verde della GMG del 2000. Quanto ribrezzo provi?</label>
+    <select name="borghesismo2">
+      <option value="1">1 - Nessuno, icona pop</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Non riesco a guardare</option>
     </select>
-  </div>
 
-  <div class="question">
-    <label>5. La maggior parte delle persone agisce solo per tornaconto personale.</label>
-    <select data-index="4" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+    <h2>Cinismo</h2>
+    <label>🌀 È una giornata storta. Un amico ti dice: "L'importante è avere la domanda". Quanto ti cambia?</label>
+    <select name="cinismo1">
+      <option value="1">1 - Mi commuovo</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Ma per favore...</option>
     </select>
-  </div>
 
-  <div class="question">
-    <label>6. Non mi sorprende quando qualcuno tradisce la fiducia altrui.</label>
-    <select data-index="5" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+    <label>🏔️ È appena finita una vacanza bellissima. Come la vivi?</label>
+    <select name="cinismo2">
+      <option value="1">1 - Domani è finito tutto</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Paradigma della vita</option>
     </select>
-  </div>
 
-  <div class="question">
-    <label>7. Faccio fatica a mantenere la concentrazione su un compito per più di 10 minuti.</label>
-    <select data-index="6" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+    <h2>Distrazione</h2>
+    <label>🍷 Ieri sera a cena c'era Papa Leone. Ti svegli. Che impatto ha ancora quella serata?</label>
+    <select name="distrazione1">
+      <option value="1">1 - Mi sento diverso</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Chi era a cena?</option>
     </select>
-  </div>
 
-  <div class="question">
-    <label>8. Mi capita spesso di dimenticare impegni o oggetti personali.</label>
-    <select data-index="7" required>
-      <option value="">Scegli</option>
-      <option value="1">1 - Per niente d'accordo</option>
+    <label>🙏 Stai dicendo l'Angelus ma non ti ricordi a che punto sei. Quanto ti capita?</label>
+    <select name="distrazione2">
+      <option value="1">1 - Mai, prego come una macchina</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5 - Totalmente d'accordo</option>
+      <option value="5">5 - Sempre, è un mistero</option>
     </select>
-  </div>
 
-  <button type="submit" style="margin-top: 20px; font-size: 1.1rem; padding: 10px;">Mostra risultato</button>
-</form>
-
-<div id="chartContainer" style="display:none;">
-  <h2>Il tuo profilo radar</h2>
-  <canvas id="radarChart" width="400" height="400"></canvas>
-</div>
-
-<script>
-  const form = document.getElementById('quizForm');
-  const chartContainer = document.getElementById('chartContainer');
-  const ctx = document.getElementById('radarChart').getContext('2d');
-  let radarChart;
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const selects = form.querySelectorAll('select');
-    const values = [];
-
-    for(let i = 0; i < selects.length; i++) {
-      const val = parseInt(selects[i].value);
-      if (isNaN(val)) {
-        alert('Per favore, rispondi a tutte le domande.');
-        return;
-      }
-      values.push(val);
-    }
-
-    // Calcola la media per ogni tratto
-    function avg(arr) {
-      return arr.reduce((a,b) => a+b, 0) / arr.length;
-    }
-
-    const moralismo = avg(values.slice(0, 2));
-    const borghesismo = avg(values.slice(2, 4));
-    const cinismo = avg(values.slice(4, 6));
-    const distrazione = avg(values.slice(6, 8));
-
-    const data = {
-      labels: ['Moralismo', 'Borghesismo', 'Cinismo', 'Distrazione'],
-      datasets: [{
-        label: 'Punteggio',
-        data: [moralismo, borghesismo, cinismo, distrazione],
-        fill: true,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgb(54, 162, 235)',
-        pointBackgroundColor: 'rgb(54, 162, 235)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgb(54, 162, 235)'
-      }]
-    };
-
-    const options = {
-      scales: {
-        r: {
-          min: 1,
-          max: 5,
-          ticks: {
-            stepSize: 1
-          }
-        }
-      }
-    };
-
-    if (radarChart) {
-      radarChart.destroy();
-    }
-
-    radarChart = new Chart(ctx, {
-      type: 'radar',
-      data: data,
-      options: options
-    });
-
-    chartContainer.style.display = 'block';
-    chartContainer.scrollIntoView({behavior: 'smooth'});
-  });
-</script>
-
+    <button type="submit">Calcola il mio radar!</button>
+  </form>
 </body>
 </html>
