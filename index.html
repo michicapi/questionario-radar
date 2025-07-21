@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CALCOLOMETRO PALAFITTE 2025</title>
-  https://cdn.jsdelivr.net/npm/chart.js
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -29,7 +29,7 @@
       display: block;
       margin-top: 1rem;
     }
-    select {
+    input[type="number"] {
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.5rem;
@@ -60,85 +60,37 @@
 <body>
   <h1>CALCOLOMETRO PALAFITTE 2025</h1>
   <form id="quizForm">
-    <label for="moralismo1">😴 Giudizio verso chi si addormenta agli esercizi</label>
-    <select name="moralismo1" id="moralismo1" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Nessun giudizio</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Eretico pubblico!</option>
-    </select>
+    <label>Sei agli esercizi della Fraternità e quell accanto a te si addormenta. Quando si sveglia per la messa dice il padre nostro fuori tempo. Quanto lo giudichi?
+      <input type="number" name="q1" min="1" max="5" required>
+    </label>
 
-    <label for="moralismo2">📘 Arrivi senza aver letto la SDC</label>
-    <select name="moralismo2" id="moralismo2" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Con la Grazia tutto è possibile</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Niente, Netflix subito</option>
-    </select>
+    <label>Arrivi alla scuola senza aver letto la SDC, quanto potrai effettivamente lavorare quella sera?
+      <input type="number" name="q2" min="1" max="5" required>
+    </label>
 
-    <label for="borghesismo1">🥵 Dopo la gita passeggiabile</label>
-    <select name="borghesismo1" id="borghesismo1" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Formaggino e via</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Pelata al rifugio con orgoglio</option>
-    </select>
+    <label>Hai appena finito una "gita passeggiabile" smattando. Qual è la tua prossima azione (1 = "formaggino del cestino", 5 = "pelata al rifugio")?
+      <input type="number" name="q3" min="1" max="5" required>
+    </label>
 
-    <label for="borghesismo2">🪑 Ribrezzo per il seggiolino GMG 2000</label>
-    <select name="borghesismo2" id="borghesismo2" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Nessuno, icona pop</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Non riesco a guardare</option>
-    </select>
+    <label>Hai visto un ciellino aggirarsi per piazza san pietro con il seggiolino verde della GMG 2000. Quanto ribrezzo provi?
+      <input type="number" name="q4" min="1" max="5" required>
+    </label>
 
-    <label for="cinismo1">🌀 L'importante è avere la domanda</label>
-    <select name="cinismo1" id="cinismo1" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Mi commuovo</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Ma per favore...</option>
-    </select>
+    <label>È una giornata storta. Un amico ti dice “l’importante è avere la domanda”. Quanto ti cambia?
+      <input type="number" name="q5" min="1" max="5" required>
+    </label>
 
-    <label for="cinismo2">🏔️ Dopo una vacanza bellissima</label>
-    <select name="cinismo2" id="cinismo2" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Domani è finito tutto</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Paradigma della vita</option>
-    </select>
+    <label>È appena finita la vacanza ed è stata bellissima. Quanto pensi “domani è finito tutto” vs “paradigma della vita”?
+      <input type="number" name="q6" min="1" max="5" required>
+    </label>
 
-    <label for="distrazione1">🍷 Serata con Papa Leone</label>
-    <select name="distrazione1" id="distrazione1" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Mi sento diverso</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Chi era a cena?</option>
-    </select>
+    <label>Ieri sera è venuto a cena papa Leone con la tua fraternità. Che impatto ha la serata il giorno dopo?
+      <input type="number" name="q7" min="1" max="5" required>
+    </label>
 
-    <label for="distrazione2">🙏 Angelus e distrazione</label>
-    <select name="distrazione2" id="distrazione2" required>
-      <option value="">-- Seleziona --</option>
-      <option value="1">1 - Mai, prego come una macchina</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Sempre, è un mistero</option>
-    </select>
+    <label>Stai dicendo l’angelus ma non ti ricordi a che punto sei arrivato?
+      <input type="number" name="q8" min="1" max="5" required>
+    </label>
 
     <button type="submit">ANALIZZA CHE TIPO DI CIELLINO SEI</button>
   </form>
@@ -151,24 +103,28 @@
     const form = document.getElementById("quizForm");
     const radarContainer = document.getElementById("radarContainer");
     const ctx = document.getElementById("radarChart").getContext("2d");
+
     let radarChart;
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", function(event) {
       event.preventDefault();
 
       const data = new FormData(form);
-      const values = {};
-      for (let [key, value] of data.entries()) {
-        values[key] = parseInt(value);
+      const scores = [];
+      for (let pair of data.entries()) {
+        scores.push(parseInt(pair[1]));
       }
 
-      const moralismo = (values.moralismo1 + values.moralismo2) / 2;
-      const borghesismo = (values.borghesismo1 + values.borghesismo2) / 2;
-      const cinismo = (values.cinismo1 + values.cinismo2) / 2;
-      const distrazione = (values.distrazione1 + values.distrazione2) / 2;
-
-      const labels = ["Moralismo", "Borghesismo", "Cinismo", "Distrazione"];
-      const scores = [moralismo, borghesismo, cinismo, distrazione];
+      const labels = [
+        "Giudizio Fraterno",
+        "Preparazione alla Scuola",
+        "Resistenza alla Gita",
+        "Ribrezzo Estetico",
+        "Cambiamento Interiore",
+        "Post-Vacanza",
+        "Impatto Serate Epiche",
+        "Angelus Awareness"
+      ];
 
       if (radarChart) radarChart.destroy();
 
@@ -187,13 +143,12 @@
         },
         options: {
           responsive: true,
-          scales: {
-            r: {
+          scale: {
+            ticks: {
+              beginAtZero: true,
               min: 1,
               max: 5,
-              ticks: {
-                stepSize: 1
-              }
+              stepSize: 1
             }
           }
         }
@@ -203,3 +158,4 @@
     });
   </script>
 </body>
+</html>
