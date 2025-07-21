@@ -3,66 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Questionario Radar</title>
+  <title>CALCOLOMETRO PALAFITTE 2025</title>
+  https://cdn.jsdelivr.net/npm/chart.js
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff9f2;
-      color: #333;
+      font-family: Arial, sans-serif;
       padding: 2rem;
+      background: #f2f2f2;
+      color: #333;
     }
-
     h1 {
       text-align: center;
+      font-size: 2rem;
       margin-bottom: 2rem;
     }
-
     form {
-      max-width: 800px;
+      max-width: 600px;
       margin: auto;
+      background: #fff;
       padding: 2rem;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
     label {
       display: block;
-      font-weight: bold;
-      margin: 1.5rem 0 0.5rem;
+      margin-top: 1rem;
     }
-
     select {
       width: 100%;
       padding: 0.5rem;
-      border-radius: 6px;
+      margin-top: 0.5rem;
       border: 1px solid #ccc;
+      border-radius: 5px;
     }
-
     button {
       margin-top: 2rem;
       width: 100%;
       padding: 1rem;
-      font-size: 1.2rem;
+      background: #0070f3;
+      color: #fff;
       border: none;
-      background-color: #ff8c42;
-      color: white;
-      border-radius: 8px;
+      border-radius: 5px;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-
     button:hover {
-      background-color: #ff6a00;
+      background: #005bb5;
+    }
+    #radarContainer {
+      max-width: 600px;
+      margin: 3rem auto;
+      display: none;
     }
   </style>
 </head>
 <body>
+  <h1>CALCOLOMETRO PALAFITTE 2025</h1>
   <h1>📊 Radar della Tua Anima</h1>
-  <form id="questionario">
-    <h2>Moralismo</h2>
-    <label>😴 Sei agli esercizi della Fraternità e quello accanto si addormenta. Quando si sveglia per la messa dice il Padre Nostro fuori tempo. Quanto lo giudichi?</label>
-    <select name="moralismo1">
+  <form id="quizForm">
+
+    <label for="moralismo1">😴 Sei agli esercizi della Fraternità e quello accanto si addormenta. Quando si sveglia per la messa dice il Padre Nostro fuori tempo. Quanto lo giudichi?</label>
+    <select name="moralismo1" id="moralismo1" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Nessun giudizio, fratello mio</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -70,8 +72,9 @@
       <option value="5">5 - Eretico pubblico!</option>
     </select>
 
-    <label>📘 Arrivi alla scuola senza aver letto la SDC. Quanto potrai effettivamente lavorare quella sera?</label>
-    <select name="moralismo2">
+    <label for="moralismo2">📘 Arrivi alla scuola senza aver letto la SDC. Quanto potrai effettivamente lavorare quella sera?</label>
+    <select name="moralismo2" id="moralismo2" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Con la Grazia tutto è possibile</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -79,9 +82,9 @@
       <option value="5">5 - Niente, Netflix subito</option>
     </select>
 
-    <h2>Borghesismo</h2>
-    <label>🥵 Hai appena finito una "gita passeggiabile" smattando. Cosa farai adesso?</label>
-    <select name="borghesismo1">
+    <label for="borghesismo1">🥵 Hai appena finito una "gita passeggiabile" smattando. Cosa farai adesso?</label>
+    <select name="borghesismo1" id="borghesismo1" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Formaggino del cestino e via</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -89,8 +92,9 @@
       <option value="5">5 - Pelata al rifugio con orgoglio</option>
     </select>
 
-    <label>🪑 Hai visto uno della CL con il seggiolino verde della GMG del 2000. Quanto ribrezzo provi?</label>
-    <select name="borghesismo2">
+    <label for="borghesismo2">🪑 Hai visto uno della CL con il seggiolino verde della GMG del 2000. Quanto ribrezzo provi?</label>
+    <select name="borghesismo2" id="borghesismo2" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Nessuno, icona pop</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -98,9 +102,9 @@
       <option value="5">5 - Non riesco a guardare</option>
     </select>
 
-    <h2>Cinismo</h2>
-    <label>🌀 È una giornata storta. Un amico ti dice: "L'importante è avere la domanda". Quanto ti cambia?</label>
-    <select name="cinismo1">
+    <label for="cinismo1">🌀 È una giornata storta. Un amico ti dice: "L'importante è avere la domanda". Quanto ti cambia?</label>
+    <select name="cinismo1" id="cinismo1" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Mi commuovo</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -108,8 +112,9 @@
       <option value="5">5 - Ma per favore...</option>
     </select>
 
-    <label>🏔️ È appena finita una vacanza bellissima. Come la vivi?</label>
-    <select name="cinismo2">
+    <label for="cinismo2">🏔️ È appena finita una vacanza bellissima. Come la vivi?</label>
+    <select name="cinismo2" id="cinismo2" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Domani è finito tutto</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -117,9 +122,9 @@
       <option value="5">5 - Paradigma della vita</option>
     </select>
 
-    <h2>Distrazione</h2>
-    <label>🍷 Ieri sera a cena c'era Papa Leone. Ti svegli. Che impatto ha ancora quella serata?</label>
-    <select name="distrazione1">
+    <label for="distrazione1">🍷 Ieri sera a cena c'era Papa Leone. Ti svegli. Che impatto ha ancora quella serata?</label>
+    <select name="distrazione1" id="distrazione1" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Mi sento diverso</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -127,8 +132,9 @@
       <option value="5">5 - Chi era a cena?</option>
     </select>
 
-    <label>🙏 Stai dicendo l'Angelus ma non ti ricordi a che punto sei. Quanto ti capita?</label>
-    <select name="distrazione2">
+    <label for="distrazione2">🙏 Stai dicendo l'Angelus ma non ti ricordi a che punto sei. Quanto ti capita?</label>
+    <select name="distrazione2" id="distrazione2" required>
+      <option value="">-- Seleziona --</option>
       <option value="1">1 - Mai, prego come una macchina</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -136,7 +142,52 @@
       <option value="5">5 - Sempre, è un mistero</option>
     </select>
 
-    <button type="submit">Calcola il mio radar!</button>
+    <button type="submit">ANALIZZA CHE TIPO DI CIELLINO SEI</button>
   </form>
-</body>
-</html>
+
+  <div id="radarContainer">
+    <canvas id="radarChart"></canvas>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("quizForm");
+      const radarContainer = document.getElementById("radarContainer");
+      const ctx = document.getElementById("radarChart").getContext("2d");
+      let radarChart;
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const data = new FormData(form);
+        const scores = [];
+        for (let pair of data.entries()) {
+          const value = parseInt(pair[1]);
+          if (isNaN(value)) {
+            alert("Per favore, compila tutte le domande.");
+            return;
+          }
+          scores.push(value);
+        }
+
+        const labels = [
+          "Giudizio Fraterno",
+          "Preparazione alla Scuola",
+          "Resistenza alla Gita",
+          "Ribrezzo Estetico",
+          "Cambiamento Interiore",
+          "Post-Vacanza",
+          "Impatto Serate Epiche",
+          "Angelus Awareness"
+        ];
+
+        if (radarChart) radarChart.destroy();
+
+        radarChart = new Chart(ctx, {
+          type: "radar",
+          data: {
+            labels: labels,
+            datasets: [{
+              label: "Il tuo profilo ciellino",
+              data: scores,
+              backgroundColor: "
