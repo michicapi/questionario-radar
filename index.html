@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CALCOLOMETRO PALAFITTE 2025</title>
   https://cdn.jsdelivr.net/npm/chart.js
   <style>
@@ -59,20 +59,18 @@
 </head>
 <body>
   <h1>CALCOLOMETRO PALAFITTE 2025</h1>
-  <h1>📊 Radar della Tua Anima</h1>
   <form id="quizForm">
-
-    <label for="moralismo1">😴 Sei agli esercizi della Fraternità e quello accanto si addormenta. Quando si sveglia per la messa dice il Padre Nostro fuori tempo. Quanto lo giudichi?</label>
+    <label for="moralismo1">😴 Giudizio verso chi si addormenta agli esercizi</label>
     <select name="moralismo1" id="moralismo1" required>
       <option value="">-- Seleziona --</option>
-      <option value="1">1 - Nessun giudizio, fratello mio</option>
+      <option value="1">1 - Nessun giudizio</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5 - Eretico pubblico!</option>
     </select>
 
-    <label for="moralismo2">📘 Arrivi alla scuola senza aver letto la SDC. Quanto potrai effettivamente lavorare quella sera?</label>
+    <label for="moralismo2">📘 Arrivi senza aver letto la SDC</label>
     <select name="moralismo2" id="moralismo2" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Con la Grazia tutto è possibile</option>
@@ -82,17 +80,17 @@
       <option value="5">5 - Niente, Netflix subito</option>
     </select>
 
-    <label for="borghesismo1">🥵 Hai appena finito una "gita passeggiabile" smattando. Cosa farai adesso?</label>
+    <label for="borghesismo1">🥵 Dopo la gita passeggiabile</label>
     <select name="borghesismo1" id="borghesismo1" required>
       <option value="">-- Seleziona --</option>
-      <option value="1">1 - Formaggino del cestino e via</option>
+      <option value="1">1 - Formaggino e via</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5 - Pelata al rifugio con orgoglio</option>
     </select>
 
-    <label for="borghesismo2">🪑 Hai visto uno della CL con il seggiolino verde della GMG del 2000. Quanto ribrezzo provi?</label>
+    <label for="borghesismo2">🪑 Ribrezzo per il seggiolino GMG 2000</label>
     <select name="borghesismo2" id="borghesismo2" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Nessuno, icona pop</option>
@@ -102,7 +100,7 @@
       <option value="5">5 - Non riesco a guardare</option>
     </select>
 
-    <label for="cinismo1">🌀 È una giornata storta. Un amico ti dice: "L'importante è avere la domanda". Quanto ti cambia?</label>
+    <label for="cinismo1">🌀 L'importante è avere la domanda</label>
     <select name="cinismo1" id="cinismo1" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Mi commuovo</option>
@@ -112,7 +110,7 @@
       <option value="5">5 - Ma per favore...</option>
     </select>
 
-    <label for="cinismo2">🏔️ È appena finita una vacanza bellissima. Come la vivi?</label>
+    <label for="cinismo2">🏔️ Dopo una vacanza bellissima</label>
     <select name="cinismo2" id="cinismo2" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Domani è finito tutto</option>
@@ -122,7 +120,7 @@
       <option value="5">5 - Paradigma della vita</option>
     </select>
 
-    <label for="distrazione1">🍷 Ieri sera a cena c'era Papa Leone. Ti svegli. Che impatto ha ancora quella serata?</label>
+    <label for="distrazione1">🍷 Serata con Papa Leone</label>
     <select name="distrazione1" id="distrazione1" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Mi sento diverso</option>
@@ -132,7 +130,7 @@
       <option value="5">5 - Chi era a cena?</option>
     </select>
 
-    <label for="distrazione2">🙏 Stai dicendo l'Angelus ma non ti ricordi a che punto sei. Quanto ti capita?</label>
+    <label for="distrazione2">🙏 Angelus e distrazione</label>
     <select name="distrazione2" id="distrazione2" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Mai, prego come una macchina</option>
@@ -150,44 +148,58 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById("quizForm");
-      const radarContainer = document.getElementById("radarContainer");
-      const ctx = document.getElementById("radarChart").getContext("2d");
-      let radarChart;
+    const form = document.getElementById("quizForm");
+    const radarContainer = document.getElementById("radarContainer");
+    const ctx = document.getElementById("radarChart").getContext("2d");
+    let radarChart;
 
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-        const data = new FormData(form);
-        const scores = [];
-        for (let pair of data.entries()) {
-          const value = parseInt(pair[1]);
-          if (isNaN(value)) {
-            alert("Per favore, compila tutte le domande.");
-            return;
+      const data = new FormData(form);
+      const values = {};
+      for (let [key, value] of data.entries()) {
+        values[key] = parseInt(value);
+      }
+
+      const moralismo = (values.moralismo1 + values.moralismo2) / 2;
+      const borghesismo = (values.borghesismo1 + values.borghesismo2) / 2;
+      const cinismo = (values.cinismo1 + values.cinismo2) / 2;
+      const distrazione = (values.distrazione1 + values.distrazione2) / 2;
+
+      const labels = ["Moralismo", "Borghesismo", "Cinismo", "Distrazione"];
+      const scores = [moralismo, borghesismo, cinismo, distrazione];
+
+      if (radarChart) radarChart.destroy();
+
+      radarChart = new Chart(ctx, {
+        type: "radar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Il tuo profilo ciellino",
+            data: scores,
+            backgroundColor: "rgba(0, 112, 243, 0.2)",
+            borderColor: "rgba(0, 112, 243, 1)",
+            pointBackgroundColor: "#0070f3",
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            r: {
+              min: 1,
+              max: 5,
+              ticks: {
+                stepSize: 1
+              }
+            }
           }
-          scores.push(value);
         }
+      });
 
-        const labels = [
-          "Giudizio Fraterno",
-          "Preparazione alla Scuola",
-          "Resistenza alla Gita",
-          "Ribrezzo Estetico",
-          "Cambiamento Interiore",
-          "Post-Vacanza",
-          "Impatto Serate Epiche",
-          "Angelus Awareness"
-        ];
-
-        if (radarChart) radarChart.destroy();
-
-        radarChart = new Chart(ctx, {
-          type: "radar",
-          data: {
-            labels: labels,
-            datasets: [{
-              label: "Il tuo profilo ciellino",
-              data: scores,
-              backgroundColor: "
+      radarContainer.style.display = "block";
+    });
+  </script>
+</body>
