@@ -82,7 +82,7 @@
     </select>
 
     <!-- DOMANDE ESISTENTI -->
-    <label for="moralismo1">😴 Sei agli esercizi della Fraternità e quell accanto a te si addormenta. Quando si sveglia per la messa dice il padre nostro fuori tempo. Quanto lo giudichi?</label>
+    <label for="moralismo1">😴 Sei agli esercizi della Fraternità e quell accanto a te si addormenta. Quanto lo giudichi?</label>
     <select name="moralismo1" id="moralismo1" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Nessun giudizio</option>
@@ -92,7 +92,7 @@
       <option value="5">5 - Eretico pubblico!</option>
     </select>
 
-    <label for="moralismo2">📘 Arrivi alla scuola senza aver letto la SDC, quanto potrai effettivamente lavorare quella sera </label>
+    <label for="moralismo2">📘 Arrivi alla scuola senza aver letto la SDC, cosa può accadere? </label>
     <select name="moralismo2" id="moralismo2" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Con la Grazia tutto è possibile</option>
@@ -142,7 +142,7 @@
       <option value="5">5 - Paradigma della vita</option>
     </select>
 
-    <label for="distrazione1">🍷 Ieri sera è venuto a cena papa Leone con la tua fraternità. Che impatto ha la serata il giorno dopo?</label>
+    <label for="distrazione1">🍷 Ieri sera è venuto a cena Papa Leone con la tua fraternità. Che impatto ha la serata il giorno dopo?</label>
     <select name="distrazione1" id="distrazione1" required>
       <option value="">-- Seleziona --</option>
       <option value="1">1 - Mi sento diverso</option>
@@ -162,6 +162,26 @@
       <option value="5">5 - Sempre, è un mistero</option>
     </select>
     
+    <label for="speranza1">🌌 Non sai cosa mangerai stasera. Giussani parla di certezza nel futuro. Quanta speranza ti rimane?</label>
+    <select name="speranza1" id="speranza1" required>
+      <option value="">-- Seleziona --</option>
+      <option value="1">1 - “Io ho solo la certezza che il frigo è vuoto.”</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 - “Anche se digiuno, il cuore canta. La speranza è già qui (e forse anche la carbonara).”</option>
+    </select>
+
+    <label for="speranza2">💻 Dopo tre call su Teams, ti ricordi che la speranza nasce dall’incontro. Quanto ci credi ancora?</label>
+    <select name="speranza2" id="speranza2" required>
+      <option value="">-- Seleziona --</option>
+      <option value="1">1 - “L’unico incontro che ho fatto è stato con l’eco del mio microfono.”</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 - “Cristo può passare anche in una riunione. Magari non nella prima mezz’ora, ma poi sì.”</option>
+    </select>
+
     <button type="submit">ANALIZZA CHE TIPO DI CIELLINO SEI</button>
   </form>
 
@@ -188,9 +208,10 @@
       const borghesismo = (parseInt(values.borghesismo1) + parseInt(values.borghesismo2)) / 2;
       const cinismo = (parseInt(values.cinismo1) + parseInt(values.cinismo2)) / 2;
       const distrazione = (parseInt(values.distrazione1) + parseInt(values.distrazione2)) / 2;
+      const speranza = (parseInt(values.speranza1) + parseInt(values.speranza2)) / 2;
 
-      const labels = ["Moralismo", "Borghesismo", "Cinismo", "Distrazione"];
-      const scores = [moralismo, borghesismo, cinismo, distrazione];
+      const labels = ["Moralismo", "Borghesismo", "Cinismo", "Distrazione", "Speranza"];
+      const scores = [moralismo, borghesismo, cinismo, distrazione, speranza];
 
       if (radarChart) radarChart.destroy();
 
@@ -226,3 +247,4 @@
   </script>
 </body>
 </html>
+
