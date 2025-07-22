@@ -60,6 +60,28 @@
 <body>
   <h1>CALCOLOMETRO PALAFITTE 2025</h1>
   <form id="quizForm">
+    <!-- NUOVE DOMANDE -->
+    <label for="eta">📅 Quanti anni hai?</label>
+    <select name="eta" id="eta" required>
+      <option value="">-- Seleziona --</option>
+      <option value="<18"><18 Anni</option>
+      <option value="18-35">18 - 35 Anni</option>
+      <option value="35-65">35 - 65 Anni</option>
+      <option value=">65">> 65 Anni</option>
+    </select>
+
+    <label for="professione">💼 Quale è tua professione?</label>
+    <select name="professione" id="professione" required>
+      <option value="">-- Seleziona --</option>
+      <option value="Medico/Infermiere">Medico/Infermiere</option>
+      <option value="Avvocato">Avvocato</option>
+      <option value="Professore/Insegnante">Professore/Insegnante</option>
+      <option value="Memores Domini">Memores Domini</option>
+      <option value="Prete">Prete</option>
+      <option value="Altro">Altro</option>
+    </select>
+
+    <!-- DOMANDE ESISTENTI -->
     <label for="moralismo1">😴 Sei agli esercizi della Fraternità e quell accanto a te si addormenta. Quando si sveglia per la messa dice il padre nostro fuori tempo. Quanto lo giudichi?</label>
     <select name="moralismo1" id="moralismo1" required>
       <option value="">-- Seleziona --</option>
@@ -159,13 +181,13 @@
       const data = new FormData(form);
       const values = {};
       for (let [key, value] of data.entries()) {
-        values[key] = parseInt(value);
+        values[key] = value;
       }
 
-      const moralismo = (values.moralismo1 + values.moralismo2) / 2;
-      const borghesismo = (values.borghesismo1 + values.borghesismo2) / 2;
-      const cinismo = (values.cinismo1 + values.cinismo2) / 2;
-      const distrazione = (values.distrazione1 + values.distrazione2) / 2;
+      const moralismo = (parseInt(values.moralismo1) + parseInt(values.moralismo2)) / 2;
+      const borghesismo = (parseInt(values.borghesismo1) + parseInt(values.borghesismo2)) / 2;
+      const cinismo = (parseInt(values.cinismo1) + parseInt(values.cinismo2)) / 2;
+      const distrazione = (parseInt(values.distrazione1) + parseInt(values.distrazione2)) / 2;
 
       const labels = ["Moralismo", "Borghesismo", "Cinismo", "Distrazione"];
       const scores = [moralismo, borghesismo, cinismo, distrazione];
