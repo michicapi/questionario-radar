@@ -5,39 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PALAFITTOMETRO</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #3b82f6;
+      --secondary: #1e3a8a;
+      --background: #f8fafc;
+      --card: #ffffff;
+      --accent: #93c5fd;
+      --text: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 2rem;
-      background: linear-gradient(135deg, #f9fafc, #e0ecff);
-      color: #333;
+      background: var(--background);
+      color: var(--text);
       min-height: 100vh;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 2rem;
-      color: #1e3a8a;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      color: var(--secondary);
     }
 
     form {
-      max-width: 650px;
+      max-width: 700px;
       margin: auto;
-      background: #ffffff;
+      background: var(--card);
       padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
     }
 
     label {
       display: block;
-      margin-top: 1.5rem;
+      margin-top: 1.6rem;
       font-weight: 600;
-      color: #1e293b;
+      color: #334155;
     }
 
     select {
@@ -45,27 +57,27 @@
       padding: 0.75rem;
       margin-top: 0.5rem;
       border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 1rem;
-      background-color: #f8fafc;
+      background-color: #f1f5f9;
       transition: all 0.3s ease;
     }
 
     select:focus {
       outline: none;
-      border-color: #60a5fa;
+      border-color: var(--primary);
       background-color: #fff;
-      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
     }
 
     button {
       margin-top: 2.5rem;
       width: 100%;
       padding: 1rem;
-      background: linear-gradient(to right, #2563eb, #3b82f6);
+      background: linear-gradient(to right, var(--secondary), var(--primary));
       color: #fff;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
@@ -73,28 +85,47 @@
     }
 
     button:hover {
-      background: linear-gradient(to right, #1d4ed8, #2563eb);
-      transform: scale(1.02);
+      background: linear-gradient(to right, #1e40af, #2563eb);
+      transform: scale(1.015);
     }
 
     #radarContainer {
-      max-width: 650px;
-      margin: 4rem auto;
-      display: none;
-      background: #ffffff;
+      max-width: 700px;
+      margin: 4rem auto 2rem;
+      background: var(--card);
       padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      display: none;
+      text-align: center;
     }
 
-    canvas {
+    #radarChart {
       max-width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    #downloadBtn {
+      background: #10b981;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    #downloadBtn:hover {
+      background: #059669;
     }
   </style>
 </head>
 <body>
   <h1>PALAFITTOMETRO</h1>
   <form id="quizForm">
+    <!-- Domande come nel tuo script, identiche, mantenute fedeli -->
     <label for="eta">📅 Quanti anni hai?</label>
     <select name="eta" id="eta" required>
       <option value="">-- Seleziona --</option>
@@ -169,31 +200,31 @@
 
   <div id="radarContainer">
     <canvas id="radarChart"></canvas>
+    <button id="downloadBtn">📥 Scarica il tuo grafico</button>
   </div>
 
   <script>
     const form = document.getElementById("quizForm");
     const radarContainer = document.getElementById("radarContainer");
     const ctx = document.getElementById("radarChart").getContext("2d");
+    const downloadBtn = document.getElementById("downloadBtn");
     let radarChart;
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
       const data = new FormData(form);
-      const values = {};
-      for (let [key, value] of data.entries()) {
-        values[key] = value;
-      }
+      const values = Object.fromEntries(data.entries());
 
-      const moralismo = parseInt(values.moralismo1);
-      const borghesismo = parseInt(values.borghesismo1);
-      const cinismo = parseInt(values.cinismo1);
-      const distrazione = parseInt(values.distrazione1);
-      const speranza = parseInt(values.speranza1);
+      const scores = [
+        parseInt(values.moralismo1),
+        parseInt(values.borghesismo1),
+        parseInt(values.cinismo1),
+        parseInt(values.distrazione1),
+        parseInt(values.speranza1)
+      ];
 
       const labels = ["Moralismo", "Borghesismo", "Cinismo", "Distrazione", "Speranza"];
-      const scores = [moralismo, borghesismo, cinismo, distrazione, speranza];
 
       if (radarChart) radarChart.destroy();
 
@@ -204,20 +235,46 @@
           datasets: [{
             label: "Il tuo profilo",
             data: scores,
-            backgroundColor: "rgba(37, 99, 235, 0.2)",
-            borderColor: "#2563eb",
-            pointBackgroundColor: "#2563eb",
+            backgroundColor: "rgba(59, 130, 246, 0.2)",
+            borderColor: "#3b82f6",
+            pointBackgroundColor: "#3b82f6",
             borderWidth: 2
           }]
         },
         options: {
           responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: "#1e3a8a",
+              titleColor: "#fff",
+              bodyColor: "#f8fafc",
+              borderColor: "#3b82f6",
+              borderWidth: 1
+            }
+          },
           scales: {
             r: {
               min: 0,
               max: 5,
               ticks: {
-                stepSize: 1
+                stepSize: 1,
+                backdropColor: "transparent",
+                color: "#64748b"
+              },
+              grid: {
+                color: "#cbd5e1"
+              },
+              angleLines: {
+                color: "#e2e8f0"
+              },
+              pointLabels: {
+                color: "#1e293b",
+                font: {
+                  size: 14
+                }
               }
             }
           }
@@ -226,6 +283,13 @@
 
       radarContainer.style.display = "block";
       radarContainer.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    downloadBtn.addEventListener("click", () => {
+      const link = document.createElement('a');
+      link.download = "palafittometro.png";
+      link.href = document.getElementById("radarChart").toDataURL("image/png");
+      link.click();
     });
   </script>
 </body>
