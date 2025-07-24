@@ -5,96 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PALAFITTOMETRO</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 2rem;
-      background: linear-gradient(135deg, #f9fafc, #e0ecff);
-      color: #333;
-      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      backdrop-filter: blur(3px);
+      color: #fff;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 3rem;
+      font-weight: 600;
       margin-bottom: 2rem;
-      color: #1e3a8a;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
 
     form {
       max-width: 650px;
       margin: auto;
-      background: #ffffff;
-      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: all 0.3s ease;
     }
 
     label {
       display: block;
       margin-top: 1.5rem;
-      font-weight: 600;
-      color: #1e293b;
+      font-size: 1.1rem;
+      color: #fff;
     }
 
     select {
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.7rem;
       margin-top: 0.5rem;
-      border: 1px solid #cbd5e1;
+      border: none;
       border-radius: 10px;
+      background: rgba(255, 255, 255, 0.8);
       font-size: 1rem;
-      background-color: #f8fafc;
-      transition: all 0.3s ease;
+      color: #333;
+      transition: background 0.3s ease;
     }
 
     select:focus {
       outline: none;
-      border-color: #60a5fa;
-      background-color: #fff;
-      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+      background: #fff;
     }
 
     button {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       width: 100%;
       padding: 1rem;
-      background: linear-gradient(to right, #2563eb, #3b82f6);
+      background: linear-gradient(to right, #0070f3, #00c6ff);
       color: #fff;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,112,243,0.3);
+      transition: transform 0.2s, background 0.3s;
     }
 
     button:hover {
-      background: linear-gradient(to right, #1d4ed8, #2563eb);
       transform: scale(1.02);
+      background: linear-gradient(to right, #005bb5, #009ee0);
     }
 
     #radarContainer {
-      max-width: 650px;
+      max-width: 700px;
       margin: 4rem auto;
       display: none;
-      background: #ffffff;
-      padding: 2rem;
+      animation: fadeIn 1s ease-out;
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      padding: 2rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
     }
 
     canvas {
-      max-width: 100%;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
   <h1>PALAFITTOMETRO</h1>
   <form id="quizForm">
+    <!-- CONTENUTO INVARIATO -->
     <label for="eta">📅 Quanti anni hai?</label>
     <select name="eta" id="eta" required>
       <option value="">-- Seleziona --</option>
@@ -113,7 +130,7 @@
       <option value="Prete/Memores Domini">Prete/Memores Domini</option>
       <option value="Altro">Altro</option>
     </select>
-
+    
     <label for="moralismo1">😴 Sei agli esercizi e quello accanto si addormenta russando. Quanto lo giudichi?</label>
     <select name="moralismo1" id="moralismo1" required>
       <option value="">-- Seleziona --</option>
@@ -204,9 +221,9 @@
           datasets: [{
             label: "Il tuo profilo",
             data: scores,
-            backgroundColor: "rgba(37, 99, 235, 0.2)",
-            borderColor: "#2563eb",
-            pointBackgroundColor: "#2563eb",
+            backgroundColor: "rgba(0, 112, 243, 0.3)",
+            borderColor: "#fff",
+            pointBackgroundColor: "#fff",
             borderWidth: 2
           }]
         },
@@ -217,7 +234,25 @@
               min: 0,
               max: 5,
               ticks: {
-                stepSize: 1
+                stepSize: 1,
+                backdropColor: 'transparent',
+                color: '#fff'
+              },
+              grid: {
+                color: 'rgba(255,255,255,0.3)'
+              },
+              pointLabels: {
+                color: '#fff',
+                font: {
+                  size: 14
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#fff'
               }
             }
           }
@@ -225,7 +260,6 @@
       });
 
       radarContainer.style.display = "block";
-      radarContainer.scrollIntoView({ behavior: 'smooth' });
     });
   </script>
 </body>
